@@ -100,8 +100,8 @@ public class ControllerMembre {
      }
        @PostMapping("/test2") 
        @ResponseBody
-     public String test2 (@RequestBody String nom , @RequestBody String prenom ){
-         return "param : "+nom+" "+prenom;
+     public String test2 (@RequestBody String nom ){
+         return "param : "+nom;
      }
       @PostMapping("/test3" )
      public @ResponseBody String test3 (@RequestBody Adresse addresse){
