@@ -13,6 +13,8 @@ import api.membre.service.GestionMembre;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,24 +40,29 @@ public class ControllerMembre {
     
     /**
      *
-     * @param nom
-     * @param prenom
-     * @param adresseMail
-     * @param login
-     * @param password
-     * @param dateDebutCertificat
-     * @param niveauExpertise
-     * @param numLicence
-     * @param pays
-     * @param ville
-     * @param type
+     * {nom:"Marine",
+    prenom:"SUTARIK",
+    adresseMail:"marine@toto.fr",
+    login:"toto",
+    password:"toto",
+    dateDebutCertificat:"05/07/2017",
+    niveauExpertise:1,
+    numLicence:"coijioj",
+    pays:"France",
+    ville:"Saint-Lys",
+    type:"Membre" }
+
+* 
+     * @param js
      * @return
      * @throws api.membre.plongee.exception.TypeMembreInvalideException
      * @throws java.text.ParseException
      */
     @PostMapping("/creation")
     @ResponseBody
-    public void creerMembre(@RequestBody String nom,
+    public Membre creerMembre(@RequestBody String js
+           /* Ce code ne marche pas, BodyRequest ne prend que le premier paramètres en fait
+            @RequestBody String nom,
              @RequestBody String prenom,
              @RequestBody String adresseMail,
             @RequestBody String login,
@@ -65,8 +72,22 @@ public class ControllerMembre {
              @RequestBody String numLicence,
              @RequestBody String pays,
             @RequestBody String ville,
-             @RequestBody String type) throws TypeMembreInvalideException, ParseException{
-        TypeMembre t = null;
+             @RequestBody String type
+    */
+    ) throws TypeMembreInvalideException, ParseException{
+        JSONObject jsonObj = new JSONObject(js);
+                     String nom = jsonObj.getString("nom");
+              String prenom= jsonObj.getString("prenom");
+              String adresseMail= jsonObj.getString("adresseMail");
+             String login= jsonObj.getString("login");
+              String password= jsonObj.getString("password");
+              String dateDebutCertificat= jsonObj.getString("dateDebutCertificat");
+              Integer niveauExpertise= Integer.parseInt(jsonObj.getString("niveauExpertise"));
+              String numLicence= jsonObj.getString("numLicence");
+              String pays= jsonObj.getString("pays");
+             String ville= jsonObj.getString("ville");
+             String type= jsonObj.getString("type");
+        TypeMembre t = null; 
         switch (type) {
             case "Membre":
                 t = TypeMembre.Membre;
@@ -85,7 +106,7 @@ public class ControllerMembre {
         }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         Date d = sdf.parse(dateDebutCertificat);
-         gestionMembre.creerMembre( nom, prenom, adresseMail, login, password, d, niveauExpertise, numLicence, pays, ville, t);
+        return gestionMembre.creerMembre( nom, prenom, adresseMail, login, password, d, niveauExpertise, numLicence, pays, ville, t);
     }
     
     /**
@@ -104,7 +125,7 @@ public class ControllerMembre {
          return "param : "+nom;
      }
       @PostMapping("/test3" )
-     public @ResponseBody String test3 (@RequestBody Adresse addresse){
+     public @ResponseBody String test3 (@RequestBody Map<String,String> addresse){
          return "param : "+addresse;
      }
       @PostMapping("/test4" )  
