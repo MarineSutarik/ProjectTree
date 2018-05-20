@@ -46,7 +46,7 @@ public class ControllerMembre {
     login:"toto",
     password:"toto",
     dateDebutCertificat:"05/07/2017",
-    niveauExpertise:1,
+    niveauExpertise:"1",
     numLicence:"coijioj",
     pays:"France",
     ville:"Saint-Lys",
