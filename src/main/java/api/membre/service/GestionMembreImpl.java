@@ -57,6 +57,7 @@ public class GestionMembreImpl  implements GestionMembre{
 
     @Override
     public Membre updateMembre(Integer idMembre, Membre m)  throws MembreIntrouvableException {
+        System.out.println("id = "+idMembre);
         Membre membreActuel = this.membreRepo.getOne(idMembre);
         if (membreActuel==null) throw new MembreIntrouvableException();
         
@@ -70,7 +71,6 @@ public class GestionMembreImpl  implements GestionMembre{
         membreActuel.setPassword(m.getPassword());
         membreActuel.setPrenom(m.getPrenom());
         membreActuel.setaPaye(m.getAPaye()); 
-        membreRepo.delete(m.getIdMembre());
         return this.membreRepo.save(membreActuel);
     }
     
