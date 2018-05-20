@@ -54,12 +54,6 @@
 	  <artifactId>spring-boot-starter-web</artifactId>
 	 </dependency>
 	 <dependency>
-	  <groupId>api.membre</groupId>
-	  <artifactId>plongee</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
-	  <type>jar</type>
-	 </dependency>
-	 <dependency>
 	  <groupId>org.json</groupId>
 	  <artifactId>json</artifactId>
 	  <version>20140107</version>
