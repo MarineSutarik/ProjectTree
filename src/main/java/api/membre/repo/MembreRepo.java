@@ -13,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Marine
  */
 public interface MembreRepo extends JpaRepository<Membre, Integer> {
+
+    public Membre findByIdMembre(Integer idMembre);
     
 }

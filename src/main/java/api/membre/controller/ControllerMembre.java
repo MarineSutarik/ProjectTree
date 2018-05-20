@@ -8,12 +8,14 @@ package api.membre.controller;
 import api.membre.plongee.domain.Adresse;
 import api.membre.plongee.domain.Membre;
 import api.membre.enumeration.TypeMembre;
+import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.plongee.exception.TypeMembreInvalideException;
 import api.membre.service.GestionMembre;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import javax.websocket.server.PathParam;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -108,6 +110,60 @@ public class ControllerMembre {
         Date d = sdf.parse(dateDebutCertificat);
         return gestionMembre.creerMembre( nom, prenom, adresseMail, login, password, d, niveauExpertise, numLicence, pays, ville, t);
     }
+    
+    /**
+     *
+     * @param param
+     * @param id
+     * @throws TypeMembreInvalideException
+     * @throws ParseException
+     */
+    @PostMapping("/modification/{id}")
+    @ResponseBody
+    public Membre modifier(@RequestBody String param, @PathParam("id") Integer id) throws TypeMembreInvalideException, ParseException, MembreIntrouvableException{
+         JSONObject jsonObj = new JSONObject(param);
+                     String nom = jsonObj.getString("nom");
+              String prenom= jsonObj.getString("prenom");
+              String adresseMail= jsonObj.getString("adresseMail");
+             String login= jsonObj.getString("login");
+              String password= jsonObj.getString("password");
+              String dateDebutCertificat= jsonObj.getString("dateDebutCertificat");
+              
+              String aPaye= jsonObj.getString("aPaye");
+              Integer niveauExpertise= Integer.parseInt(jsonObj.getString("niveauExpertise"));
+              String numLicence= jsonObj.getString("numLicence");
+              String pays= jsonObj.getString("pays");
+             String ville= jsonObj.getString("ville");
+             String type= jsonObj.getString("type");
+             
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        Date dc = sdf.parse(dateDebutCertificat);
+        Date dp = sdf.parse(aPaye);   
+        Adresse a = new Adresse(pays, ville);
+        TypeMembre t = null; 
+        switch (type) {
+            case "Membre":
+                t = TypeMembre.Membre;
+                break;
+            case "President" :
+                t = TypeMembre.President;
+                break;
+            case "Secretaire" :
+                t = TypeMembre.Secretaire;
+                break;
+            case "Enseignant" :
+                t = TypeMembre.Enseignant;
+                break;
+             default :
+                throw new TypeMembreInvalideException();
+        }
+       
+        Membre m = new Membre(nom, prenom, adresseMail, login, password, dc, dp, niveauExpertise, numLicence, a);
+        return this.gestionMembre.updateMembre(id, m);
+        
+    }
+    
+    
     
     /**
      *

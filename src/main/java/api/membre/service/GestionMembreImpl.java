@@ -12,6 +12,7 @@ import api.membre.plongee.domain.President;
 import api.membre.plongee.domain.Secretaire;
 import api.membre.enumeration.TypeMembre;
 import static api.membre.enumeration.TypeMembre.*;
+import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.repo.AdresseRepo;
 import api.membre.repo.MembreRepo;
 import java.util.Date;
@@ -53,5 +54,26 @@ public class GestionMembreImpl  implements GestionMembre{
         
         return m;
     }
+
+    @Override
+    public Membre updateMembre(Integer idMembre, Membre m)  throws MembreIntrouvableException {
+        Membre membreActuel = this.membreRepo.getOne(idMembre);
+        if (membreActuel==null) throw new MembreIntrouvableException();
+        
+        membreActuel.setAdresse(m.getAdresse());
+        membreActuel.setAdresseMail(m.getAdresseMail());
+        membreActuel.setDateDebutCertificat(m.getDateDebutCertificat());
+        membreActuel.setLogin(m.getLogin());
+        membreActuel.setNiveauExpertise(m.getNiveauExpertise());
+        membreActuel.setNom(m.getNom());
+        membreActuel.setNumLicence(m.getNumLicence());
+        membreActuel.setPassword(m.getPassword());
+        membreActuel.setPrenom(m.getPrenom());
+        membreActuel.setaPaye(m.getAPaye()); 
+        membreRepo.delete(m.getIdMembre());
+        return this.membreRepo.save(membreActuel);
+    }
+    
+    
     
 }

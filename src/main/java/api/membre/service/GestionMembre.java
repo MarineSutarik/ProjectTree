@@ -7,6 +7,7 @@ package api.membre.service;
 
 import api.membre.plongee.domain.Membre;
 import api.membre.enumeration.TypeMembre;
+import api.membre.plongee.exception.MembreIntrouvableException;
 import java.util.Date;
 
 /**
@@ -31,4 +32,6 @@ public interface GestionMembre {
      */
     public Membre creerMembre ( String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat,  Integer niveauExpertise, String numLicence, String pays, String ville, TypeMembre type);
    
+    
+    public Membre updateMembre(Integer idMembre, Membre m ) throws MembreIntrouvableException;
 }

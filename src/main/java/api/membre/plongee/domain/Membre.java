@@ -52,6 +52,7 @@ public class Membre implements Serializable {
         this.adresse = adresse;
     }
 
+
     public Integer getIdMembre() {
         return idMembre;
     }
