@@ -17,7 +17,7 @@ public class MembreRepoImpl implements MembreRepoCustom{
     private EntityManager entityManager;
     @Override
     public String getNombreCotisationsPrevues() {
-     String query = "Select count(idMembre) from Membre where year(dateDebutCertificat) = "+Calendar.getInstance().get(Calendar.YEAR);
+     String query = "Select count(m) from Membre as m where year(m.aPaye) <> "+Calendar.getInstance().get(Calendar.YEAR);
         String r = "";
         r = this.entityManager
                 .createQuery(query)
@@ -27,7 +27,7 @@ public class MembreRepoImpl implements MembreRepoCustom{
 
     @Override
     public String getNombreCotisationsRegles() {
-        String query = "Select count(idMembre) from Membre where year(dateDebutCertificat) <> "+Calendar.getInstance().get(Calendar.YEAR);
+        String query = "Select count(m) from Membre as m where year(m.aPaye) = "+Calendar.getInstance().get(Calendar.YEAR);
         String r = "";
         r = this.entityManager
                 .createQuery(query)

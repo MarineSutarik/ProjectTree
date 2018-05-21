@@ -18,7 +18,9 @@ import api.membre.repo.AdresseRepo;
 import api.membre.repo.EnseignantRepo;
 import api.membre.repo.MembreRepo;
 import api.membre.repo.PaiementRepo;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +113,8 @@ public class GestionMembreImpl  implements GestionMembre{
         if (m==null) throw new MembreIntrouvableException();
         Paiement p = new Paiement(IBAN,somme, m);
         paiement.save(p);
-        m.setaPaye(new Date());
+       
+        m.setaPaye(Calendar.getInstance().getTime());
         membreRepo.save(m);
     }
 
@@ -154,6 +157,11 @@ public class GestionMembreImpl  implements GestionMembre{
         
     }
     
-    
+    @Override
+    public void donnerCertificat(Integer idMembre) throws MembreIntrouvableException{
+        Membre m = membreRepo.getOne(idMembre);
+        m.setDateDebutCertificat(Calendar.getInstance().getTime());
+        membreRepo.save(m);
+    }
     
 }

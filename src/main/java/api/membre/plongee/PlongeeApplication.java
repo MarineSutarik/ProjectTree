@@ -15,13 +15,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(scanBasePackages={
 "api.membre.controller", "api.membre.domain","api.membre.repo","api.membre.service"})
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"api.membre.controller","api.membre.service"})
+@ComponentScan(basePackages={"api.membre.controller","api.membre.service","api.membre.plongee"})
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="api.membre.repo")
 //@EntityScan(basePackages={"api.membre.domain"})
 public class PlongeeApplication {
 
 	public static void main(String[] args) {
+                
 		SpringApplication.run(PlongeeApplication.class, args);
 	}
 }

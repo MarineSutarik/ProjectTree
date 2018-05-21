@@ -13,8 +13,14 @@ import javax.persistence.Table;
  *
  * @author Marine
  */
+@Entity
 @Table(name = "President")
 public class President extends Membre{
+     public President(){
+         super();
+     }
+            
+    
      public President( String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Date aPaye,  Integer niveauExpertise, String numLicence, Adresse adresse) {
         super(  nom,  prenom,  adresseMail,  login,  password,  dateDebutCertificat,  aPaye,   niveauExpertise,  numLicence,  adresse); 
     } 

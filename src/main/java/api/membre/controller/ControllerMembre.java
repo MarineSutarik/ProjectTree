@@ -222,4 +222,10 @@ public class ControllerMembre {
     public Map<String,String> voirStatistiques() {         
         return this.gestionMembre.consulterStatistiques();
     }
+    
+    @PutMapping("/certificat/{id}")
+    @ResponseBody
+    public void donnerCertificat(@PathVariable("id") Integer id) throws MembreIntrouvableException {         
+        this.gestionMembre.donnerCertificat(id);
+    }
 }

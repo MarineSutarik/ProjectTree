@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -32,6 +33,7 @@ public class Membre implements Serializable {
     private String login;
     private String password;
     private Date dateDebutCertificat;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date aPaye;
     private Integer niveauExpertise;
     private String numLicence;
