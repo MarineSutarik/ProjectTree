@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface MembreRepo extends JpaRepository<Membre, Integer> {
 
-    
+    public Membre findMembreByLogin(String login);
 }

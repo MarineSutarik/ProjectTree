@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -131,7 +132,7 @@ public class ControllerMembre {
      * @throws ParseException
      * @throws api.membre.plongee.exception.MembreIntrouvableException
      */
-    @PostMapping("/modification/{id}")
+    @PutMapping("/modification/{id}")
     @ResponseBody
     public Membre modifier(@RequestBody String param, @PathVariable("id") Integer id) throws TypeMembreInvalideException, ParseException, MembreIntrouvableException{
         
@@ -177,35 +178,25 @@ public class ControllerMembre {
         
     }
     
-      @PostMapping("/suppression/{id}")
+      @PutMapping("/suppression/{id}")
     public void supprimer( @PathVariable("id") Integer id) throws MembreIntrouvableException{
         this.gestionMembre.deleteMembre(id);
     }
+
     /**
      *
-     * @param nom
+     * @param param
      * @return
+     * @throws MembreIntrouvableException
      */
-    @PostMapping("/test")  
+    @PutMapping("/connexion")
     @ResponseBody
-     public String test (@RequestBody String nom ){
-         return "param : "+nom;
-     }
-       @PostMapping("/test2") 
-       @ResponseBody
-     public String test2 (@RequestBody String nom ){
-         return "param : "+nom;
-     }
-      @PostMapping("/test3" )
-     public @ResponseBody String test3 (@RequestBody Map<String,String> addresse){
-         return "param : "+addresse;
-     }
-      @PostMapping("/test4" )  
-     public @ResponseBody String test4 ( @ModelAttribute("Adresse") Adresse addresse){
-         return "param : "+addresse.getPays()+addresse.getVille();
-     }
-     @GetMapping("/test")  
-     public Integer test ( ){
-         return 1;
-     }    
+    public Membre connexion( @RequestBody String param) throws MembreIntrouvableException{
+        
+         JSONObject jsonObj = new JSONObject(param);
+         String login = jsonObj.getString("login");
+         String password= jsonObj.getString("password");
+        return this.gestionMembre.seconnecter(login, password);
+    }
+    
 }

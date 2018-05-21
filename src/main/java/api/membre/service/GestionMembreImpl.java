@@ -80,6 +80,15 @@ public class GestionMembreImpl  implements GestionMembre{
         if (membreActuel==null) throw new MembreIntrouvableException();
         else this.membreRepo.delete(idMembre);
     }
+
+    @Override
+    public Membre seconnecter(String login, String password) throws MembreIntrouvableException {
+        Membre m =  membreRepo.findMembreByLogin(login);
+        if (!m.getPassword().equals(password.trim()) || m ==null )
+            throw new MembreIntrouvableException();
+        
+        return m;
+    }
     
     
     
