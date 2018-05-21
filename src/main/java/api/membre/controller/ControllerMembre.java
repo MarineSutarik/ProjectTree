@@ -177,8 +177,10 @@ public class ControllerMembre {
         
     }
     
-    
-    
+      @PostMapping("/suppression/{id}")
+    public void supprimer( @PathVariable("id") Integer id) throws MembreIntrouvableException{
+        this.gestionMembre.deleteMembre(id);
+    }
     /**
      *
      * @param nom

@@ -73,6 +73,13 @@ public class GestionMembreImpl  implements GestionMembre{
         membreActuel.setaPaye(m.getAPaye()); 
         return this.membreRepo.save(membreActuel);
     }
+
+    @Override
+    public void deleteMembre(Integer idMembre) throws MembreIntrouvableException {
+        Membre membreActuel = this.membreRepo.getOne(idMembre);
+        if (membreActuel==null) throw new MembreIntrouvableException();
+        else this.membreRepo.delete(idMembre);
+    }
     
     
     

@@ -34,4 +34,6 @@ public interface GestionMembre {
    
     
     public Membre updateMembre(Integer idMembre, Membre m ) throws MembreIntrouvableException;
+    
+    public void deleteMembre(Integer idMembre) throws MembreIntrouvableException;
 }
