@@ -14,6 +14,7 @@ import api.membre.service.GestionMembre;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.json.JSONObject;
@@ -208,5 +209,11 @@ public class ControllerMembre {
          String IBAN = jsonObj.getString("IBAN");
          float somme= Float.parseFloat(jsonObj.getString("somme"));
          this.gestionMembre.payerCotisation(IBAN, somme,id);
+    }
+    
+    @GetMapping("/consultation")
+    @ResponseBody
+    public List consulter() throws MembreIntrouvableException{         
+        return this.gestionMembre.consulterCotisation();
     }
 }

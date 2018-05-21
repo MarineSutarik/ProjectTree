@@ -17,7 +17,9 @@ import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.repo.AdresseRepo;
 import api.membre.repo.MembreRepo;
 import api.membre.repo.PaiementRepo;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,6 +107,15 @@ public class GestionMembreImpl  implements GestionMembre{
         paiement.save(p);
         m.setaPaye(new Date());
         membreRepo.save(m);
+    }
+
+    @Override
+    public List<Membre> consulterCotisation() {
+        ArrayList<Membre> r = new   ArrayList<Membre> ();
+        for( Membre m : membreRepo.findAll()){
+            r.add(m);
+        }
+        return r;
     }
     
     
