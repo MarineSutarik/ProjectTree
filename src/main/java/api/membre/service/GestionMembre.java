@@ -38,4 +38,8 @@ public interface GestionMembre {
     public void deleteMembre(Integer idMembre) throws MembreIntrouvableException;
     
     public Membre seconnecter(String login, String password) throws MembreIntrouvableException;
+    
+    public void payerCotisation(String IBAN, float somme, Integer idMembre) throws MembreIntrouvableException;
+    
+    
 }

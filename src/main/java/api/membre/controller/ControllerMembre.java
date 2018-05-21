@@ -192,11 +192,21 @@ public class ControllerMembre {
     @PutMapping("/connexion")
     @ResponseBody
     public Membre connexion( @RequestBody String param) throws MembreIntrouvableException{
-        
+         
          JSONObject jsonObj = new JSONObject(param);
          String login = jsonObj.getString("login");
          String password= jsonObj.getString("password");
         return this.gestionMembre.seconnecter(login, password);
     }
     
+    
+    @PutMapping("/paiement/{id}")
+    @ResponseBody
+    public void payer( @PathVariable("id") Integer id, @RequestBody String param) throws MembreIntrouvableException{
+         
+         JSONObject jsonObj = new JSONObject(param);
+         String IBAN = jsonObj.getString("IBAN");
+         float somme= Float.parseFloat(jsonObj.getString("somme"));
+         this.gestionMembre.payerCotisation(IBAN, somme,id);
+    }
 }

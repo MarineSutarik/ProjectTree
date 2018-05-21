@@ -12,9 +12,11 @@ import api.membre.plongee.domain.President;
 import api.membre.plongee.domain.Secretaire;
 import api.membre.enumeration.TypeMembre;
 import static api.membre.enumeration.TypeMembre.*;
+import api.membre.plongee.domain.Paiement;
 import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.repo.AdresseRepo;
 import api.membre.repo.MembreRepo;
+import api.membre.repo.PaiementRepo;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,11 @@ public class GestionMembreImpl  implements GestionMembre{
     
     @Autowired
     private AdresseRepo adresse;
+    
+    @Autowired
+    private PaiementRepo paiement;
+    
+    
     @Override
     public Membre creerMembre(String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Integer niveauExpertise, String numLicence, String pays, String ville, TypeMembre type) {
       Adresse a = new Adresse( pays, ville);
@@ -88,6 +95,16 @@ public class GestionMembreImpl  implements GestionMembre{
             throw new MembreIntrouvableException();
         
         return m;
+    }
+
+    @Override
+    public void payerCotisation(String IBAN, float somme,Integer idMembre) throws MembreIntrouvableException {
+         Membre m = this.membreRepo.getOne(idMembre);
+        if (m==null) throw new MembreIntrouvableException();
+        Paiement p = new Paiement(IBAN,somme, m);
+        paiement.save(p);
+        m.setaPaye(new Date());
+        membreRepo.save(m);
     }
     
     
