@@ -10,6 +10,6 @@ package api.membre.repo;
  * @author marin
  */
 public interface MembreRepoCustom {
-    public Integer getNombreCotisationsPrevues();
-    public Integer getNombreCotisationsRegles();
+    public String getNombreCotisationsPrevues();
+    public String getNombreCotisationsRegles();
 }

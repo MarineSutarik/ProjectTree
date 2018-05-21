@@ -141,13 +141,13 @@ public class GestionMembreImpl  implements GestionMembre{
     
     //nombre de cotisation prévue
      k = "nombre  de cotisation prévue";
-     v =membres.getNombreCotisationsPrevues()+" cotisations";
+     v =membreRepo.getNombreCotisationsPrevues()+" cotisations";
     h.put(k, v);
     
     
     //nombre de cotisation réglées 
      k = "nombre de cotisation réglées";
-     v =membres.getNombreCotisationsRegles()+" cotisations";
+     v =membreRepo.getNombreCotisationsRegles()+" cotisations";
     h.put(k, v);
     
     return h;

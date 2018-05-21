@@ -13,6 +13,7 @@ import javax.persistence.Table;
  *
  * @author Marine
  */
+@Entity
 @Table(name = "Enseignant")
 public class Enseignant extends Membre{
      public Enseignant( String nom, String prenom, String adresseMail, String login, String password, Date dateDebutCertificat, Date aPaye,  Integer niveauExpertise, String numLicence, Adresse adresse) {

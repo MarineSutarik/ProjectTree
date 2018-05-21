@@ -216,4 +216,10 @@ public class ControllerMembre {
     public List consulter() throws MembreIntrouvableException{         
         return this.gestionMembre.consulterCotisation();
     }
+    
+    @GetMapping("/statistiques")
+    @ResponseBody
+    public Map<String,String> voirStatistiques() {         
+        return this.gestionMembre.consulterStatistiques();
+    }
 }
