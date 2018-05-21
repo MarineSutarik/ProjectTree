@@ -15,11 +15,14 @@ import static api.membre.enumeration.TypeMembre.*;
 import api.membre.plongee.domain.Paiement;
 import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.repo.AdresseRepo;
+import api.membre.repo.EnseignantRepo;
 import api.membre.repo.MembreRepo;
 import api.membre.repo.PaiementRepo;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +40,9 @@ public class GestionMembreImpl  implements GestionMembre{
     
     @Autowired
     private PaiementRepo paiement;
+    
+    @Autowired
+    private EnseignantRepo enseignant;
     
     
     @Override
@@ -116,6 +122,36 @@ public class GestionMembreImpl  implements GestionMembre{
             r.add(m);
         }
         return r;
+    }
+
+    @Override
+    public Map<String, String> consulterStatistiques() {
+        HashMap<String,String> h = new HashMap<String,String>();
+    
+   //nombre de membre
+    String k = "nombre de membre";
+    String v = membreRepo.count()+" membres";
+    h.put(k, v);
+    
+    //nombre d'enseignant
+     k = "nombre d'enseignant";
+     v = enseignant.count()+" enseignants";
+    h.put(k, v);
+    
+    
+    //nombre de cotisation prévue
+     k = "nombre  de cotisation prévue";
+     v =membres.getNombreCotisationsPrevues()+" cotisations";
+    h.put(k, v);
+    
+    
+    //nombre de cotisation réglées 
+     k = "nombre de cotisation réglées";
+     v =membres.getNombreCotisationsRegles()+" cotisations";
+    h.put(k, v);
+    
+    return h;
+        
     }
     
     

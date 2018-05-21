@@ -5,14 +5,13 @@
  */
 package api.membre.repo;
 
-import api.membre.plongee.domain.Membre;
+import api.membre.plongee.domain.Enseignant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Marine
+ * @author marin
  */
-public interface MembreRepo extends JpaRepository<Membre, Integer>, MembreRepoCustom{
-
-    public Membre findMembreByLogin(String login);
+public interface EnseignantRepo extends JpaRepository<Enseignant, Integer>{
+    
 }

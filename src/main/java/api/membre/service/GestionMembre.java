@@ -10,6 +10,7 @@ import api.membre.enumeration.TypeMembre;
 import api.membre.plongee.exception.MembreIntrouvableException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -43,4 +44,6 @@ public interface GestionMembre {
     public void payerCotisation(String IBAN, float somme, Integer idMembre) throws MembreIntrouvableException;
     
     public List<Membre> consulterCotisation();
+    
+    public Map<String, String> consulterStatistiques() ;
 }
