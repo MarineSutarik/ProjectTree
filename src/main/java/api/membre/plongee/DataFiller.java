@@ -30,6 +30,7 @@ public class DataFiller implements CommandLineRunner{
          gestionMembre.creerMembre("TOURNIE", "Vivien", "viv@gourgandine.fr", "viv", "life", null, 1, "564654uAD54", "France", "Toulouse", TypeMembre.Membre);
         Membre m =  gestionMembre.creerMembre("SUTARIK", "Marine", "marine@gourgandine.fr", "mar", "life", null, 1, "564u654AD54", "Slovaquie", "Nowhere", TypeMembre.Secretaire);
         gestionMembre.payerCotisation("pihjp", 30, m.getIdMembre());
+        gestionMembre.donnerCertificat(m.getIdMembre());
         gestionMembre.creerMembre("Z", "Gilles", "z@gil.fr", "gil", "concepts", null, 1, "564654uAD54", "France", "Perché", TypeMembre.Enseignant);
     }
 }

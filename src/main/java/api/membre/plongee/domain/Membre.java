@@ -32,6 +32,7 @@ public class Membre implements Serializable {
     @Column(unique=true)
     private String login;
     private String password;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebutCertificat;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date aPaye;
