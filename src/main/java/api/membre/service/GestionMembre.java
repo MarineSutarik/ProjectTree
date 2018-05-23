@@ -48,4 +48,6 @@ public interface GestionMembre {
     public Map<String, String> consulterStatistiques() ;
     
     public void donnerCertificat(Integer idMembre) throws MembreIntrouvableException;
+    
+    
 }
