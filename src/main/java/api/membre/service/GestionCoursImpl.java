@@ -8,7 +8,11 @@ package api.membre.service;
 import api.membre.plongee.domain.Cours;
 import api.membre.plongee.domain.Creneau;
 import api.membre.plongee.domain.Participant;
+import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import api.membre.repo.CreneauRepository;
+import api.membre.repo.CoursRepository;
 
 /**
  *
@@ -17,9 +21,28 @@ import org.springframework.stereotype.Service;
 @Service 
 public class GestionCoursImpl implements GestionCours{
 
+    @Autowired
+    CoursRepository coursRepo;
+    
+    @Autowired
+    CreneauRepository creneauRepo;
+    
+    /**
+     *
+     * @param nomCours
+     * @param niveauCible
+     * @param dateDebut
+     * @param duree
+     * @param enseignant
+     * @return
+     */
     @Override
-    public Cours creerCours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, Participant[] participants) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cours creerCours(String nomCours, Integer niveauCible, Date dateDebut, Integer duree,  Integer enseignant) {
+        Creneau creneau = new Creneau(dateDebut, duree);
+        creneauRepo.save(creneau);
+        Cours c = new Cours (nomCours, niveauCible,creneau, enseignant, new Participant[10]);
+        coursRepo.save(c);
+        return c;
     }
     
 }

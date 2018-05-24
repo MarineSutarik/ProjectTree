@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marine
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/membre")
 public class ControllerMembre {
            
     @Autowired

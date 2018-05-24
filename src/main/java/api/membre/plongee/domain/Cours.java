@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -23,10 +25,12 @@ public class Cours implements Serializable {
     private Integer idCours;
     private String nomCours ;
     private Integer niveauCible ;
+    @OneToOne
     private Creneau creneau;
     private Integer enseignant;
+    
     private Participant[] participants ;
-
+    
     public Cours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, Participant[] participants) {
         this.nomCours = nomCours;
         this.niveauCible = niveauCible;
@@ -35,7 +39,15 @@ public class Cours implements Serializable {
         this.participants = participants;
     }
 
-    protected Cours() {
+    public Cours() {
+    }
+
+    public Integer getIdCours() {
+        return idCours;
+    }
+
+    public void setIdCours(Integer idCours) {
+        this.idCours = idCours;
     }
 
     public String getNomCours() {

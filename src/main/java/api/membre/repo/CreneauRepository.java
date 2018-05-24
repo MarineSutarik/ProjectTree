@@ -5,13 +5,14 @@
  */
 package api.membre.repo;
 
-import api.membre.plongee.domain.Cours;
+import api.membre.plongee.domain.Creneau;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  *
  * @author Marine
  */
-public interface CoursRepo extends MongoRepository<Cours, Integer> {
+
+public interface CreneauRepository extends MongoRepository<Creneau, Integer> {
     
 }
