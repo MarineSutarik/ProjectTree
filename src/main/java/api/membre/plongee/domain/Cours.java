@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Marine
  */
 @Entity
-@Document
+@Document(collection="cours")
 public class Cours implements Serializable {
     @Id
     @GeneratedValue

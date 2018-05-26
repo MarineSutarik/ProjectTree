@@ -6,13 +6,14 @@
 package api.membre.repo;
 
 import api.membre.plongee.domain.Creneau;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.mongodb.repository.MongoRepository; Ne marche pas avec Mongo ...
 
 /**
  *
  * @author Marine
  */
 
-public interface CreneauRepository extends MongoRepository<Creneau, Integer> {
+public interface CreneauRepository extends CrudRepository<Creneau, Integer> {
     
 }

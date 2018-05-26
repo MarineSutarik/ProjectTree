@@ -28,6 +28,16 @@ public class ControllerCours {
     @Autowired
     private GestionCours gestionCours;
     
+    /*
+    Requête de test :
+    {
+    nomCours:"vidage de masque",
+    niveauCible :"1",
+    dateDebut : "26/05/18",
+    duree : "40",
+    enseignant:"4"
+    }
+    */
     @PostMapping("/creation")
     @ResponseBody
     public Cours creerCours(@RequestBody String js

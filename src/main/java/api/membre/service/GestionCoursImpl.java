@@ -12,7 +12,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import api.membre.repo.CreneauRepository;
-import api.membre.repo.CoursRepository;
+import api.membre.repo.CoursRepo;
 
 /**
  *
@@ -22,7 +22,7 @@ import api.membre.repo.CoursRepository;
 public class GestionCoursImpl implements GestionCours{
 
     @Autowired
-    CoursRepository coursRepo;
+    CoursRepo coursRepo;
     
     @Autowired
     CreneauRepository creneauRepo;
@@ -41,8 +41,8 @@ public class GestionCoursImpl implements GestionCours{
         Creneau creneau = new Creneau(dateDebut, duree);
         creneauRepo.save(creneau);
         Cours c = new Cours (nomCours, niveauCible,creneau, enseignant, new Participant[10]);
-        coursRepo.save(c);
-        return c;
+        Cours insert = coursRepo.save(c);
+        return insert;
     }
     
 }

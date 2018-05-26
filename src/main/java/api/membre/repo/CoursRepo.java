@@ -6,12 +6,14 @@
 package api.membre.repo;
 
 import api.membre.plongee.domain.Cours;
-import org.springframework.data.mongodb.repository.MongoRepository;
+//import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Marine
  */
-public interface CoursRepository extends MongoRepository<Cours, Integer> {
+
+public interface CoursRepo  extends CrudRepository<Cours, Integer> {
     
 }
