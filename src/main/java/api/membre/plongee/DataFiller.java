@@ -7,7 +7,9 @@ package api.membre.plongee;
 
 import api.membre.enumeration.TypeMembre;
 import api.membre.plongee.domain.Membre;
+import api.membre.service.GestionCours;
 import api.membre.service.GestionMembre;
+import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,9 @@ public class DataFiller implements CommandLineRunner{
      @Autowired
      GestionMembre gestionMembre;
      
+     @Autowired
+     GestionCours gestionCours;
+     
      @Override
      @Transactional
     public void run(String... strings) throws Exception {
@@ -31,6 +36,7 @@ public class DataFiller implements CommandLineRunner{
         Membre m =  gestionMembre.creerMembre("SUTARIK", "Marine", "marine@gourgandine.fr", "mar", "life", null, 1, "564u654AD54", "Slovaquie", "Nowhere", TypeMembre.Secretaire);
         gestionMembre.payerCotisation("pihjp", 30, m.getIdMembre());
         gestionMembre.donnerCertificat(m.getIdMembre());
-        gestionMembre.creerMembre("Z", "Gilles", "z@gil.fr", "gil", "concepts", null, 1, "564654uAD54", "France", "Perché", TypeMembre.Enseignant);
+        m = gestionMembre.creerMembre("Z", "Gilles", "z@gil.fr", "gil", "concepts", null, 1, "564654uAD54", "France", "Perché", TypeMembre.Enseignant);
+        gestionCours.creerCours("Vidage de masque", 1, Calendar.getInstance().getTime(), 40, m.getIdMembre());
     }
 }
