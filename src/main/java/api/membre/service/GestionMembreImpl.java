@@ -163,5 +163,14 @@ public class GestionMembreImpl  implements GestionMembre{
         m.setDateDebutCertificat(Calendar.getInstance().getTime());
         membreRepo.save(m);
     }
+
+    @Override
+    public Membre afficherMembre(Integer idMembre ) throws MembreIntrouvableException{
+        Membre m =  this.membreRepo.getOne(idMembre);
+        if (m==null) throw new MembreIntrouvableException();
+        return m;
+    }
+
+  
     
 }

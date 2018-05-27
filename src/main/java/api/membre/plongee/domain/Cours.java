@@ -6,6 +6,7 @@
 package api.membre.plongee.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,9 +30,9 @@ public class Cours implements Serializable {
     private Creneau creneau;
     private Integer enseignant;
     
-    private Participant[] participants ;
+    private List<Participant> participants ;
     
-    public Cours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, Participant[] participants) {
+    public Cours(String nomCours, Integer niveauCible, Creneau creneau, Integer enseignant, List<Participant>  participants) {
         this.nomCours = nomCours;
         this.niveauCible = niveauCible;
         this.creneau = creneau;
@@ -82,12 +83,17 @@ public class Cours implements Serializable {
         this.enseignant = enseignant;
     }
 
-    public Participant[] getParticipants() {
+    public List<Participant>  getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Participant[] participants) {
+    public void setParticipants(List<Participant>  participants) {
         this.participants = participants;
+    }
+    
+     public void addParticipant(Participant  participant) {
+        if(participants.contains(participant)){/* Ne rien faire pour éviter d'avoir des doublons*/}
+        this.participants.add(participant);
     }
        
 }

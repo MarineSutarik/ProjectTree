@@ -49,5 +49,6 @@ public interface GestionMembre {
     
     public void donnerCertificat(Integer idMembre) throws MembreIntrouvableException;
     
+    public Membre afficherMembre(Integer idMembre) throws MembreIntrouvableException;
     
 }

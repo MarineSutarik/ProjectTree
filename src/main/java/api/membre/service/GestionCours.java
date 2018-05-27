@@ -6,6 +6,8 @@
 package api.membre.service;
 
 import api.membre.plongee.domain.Cours;
+import api.membre.plongee.exception.CoursIntrouvableException;
+import api.membre.plongee.exception.MembreIntrouvableException;
 import java.util.Date;
 
 /**
@@ -15,5 +17,7 @@ import java.util.Date;
 public interface GestionCours {
     
     public Cours creerCours(String nomCours, Integer niveauCible, Date dateDebut, Integer duree, Integer enseignant);
+    
+    public Cours participerCours(Integer idCours, Integer idMembre) throws MembreIntrouvableException,CoursIntrouvableException;
     
 }

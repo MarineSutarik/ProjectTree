@@ -6,13 +6,17 @@
 package api.membre.controller;
 
 import api.membre.plongee.domain.Cours;
+import api.membre.plongee.exception.CoursIntrouvableException;
+import api.membre.plongee.exception.MembreIntrouvableException;
 import api.membre.service.GestionCours;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,4 +58,13 @@ public class ControllerCours {
         Date d = sdf.parse(dateDebut);
         return gestionCours.creerCours(nomCours, niveauCible, d, duree, enseignant);
     }
+    
+    @PutMapping("/participation/{idMembre}")
+    @ResponseBody
+    public Cours participerCours(@RequestBody Integer idCours,@PathVariable("idMembre") Integer idMembre) throws MembreIntrouvableException, CoursIntrouvableException{
+        return gestionCours.participerCours(idMembre, idCours);
+    }
+           
+     
+    
 }
