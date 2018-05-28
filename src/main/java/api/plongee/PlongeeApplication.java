@@ -1,4 +1,4 @@
-package api.membre.plongee;
+package api.plongee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * @author Marine
  */
-@SpringBootApplication(scanBasePackages={
+@SpringBootApplication /*(scanBasePackages={
 "api.membre.controller", "api.membre.domain","api.membre.repo","api.membre.service"})
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"api.membre.controller","api.membre.service","api.membre.plongee"})
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages="api.membre.repo")
+@EnableJpaRepositories(basePackages="api.membre.repo")*/
 //@EntityScan(basePackages={"api.membre.domain"})
 public class PlongeeApplication {
 
